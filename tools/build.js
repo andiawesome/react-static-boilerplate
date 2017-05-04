@@ -24,7 +24,7 @@ const html = task('html', () => {
   const template = fs.readFileSync('./public/index.ejs', 'utf8');
   const render = ejs.compile(template, { filename: './public/index.ejs' });
   const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config });
-  fs.writeFileSync('./public/index.html', output, 'utf8');
+  fs.writeFileSync('./public/index.php', output, 'utf8');
 });
 
 // Generate sitemap.xml

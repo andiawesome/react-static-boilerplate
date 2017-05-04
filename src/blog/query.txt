@@ -1,0 +1,23 @@
+{
+  term(id: 4) {
+    name,
+    count,
+    objects {
+      id,
+      title,
+      content,
+      type
+    }
+  },
+  menu_location(slug: "header-menu") {
+    active_menu {
+      id,
+      name,
+      items {
+        id,
+        title,
+        url
+      }
+    }
+  }
+}

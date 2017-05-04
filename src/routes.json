@@ -17,6 +17,14 @@
     "page": "./about"
   },
   {
+    "path": "/onepage",
+    "page": "./onepage"
+  },
+  {
+    "path": "/blog",
+    "page": "./blog"
+  },
+  {
     "path": "/tasks/:status(pending|completed)?",
     "page": "./home"
   }

@@ -1,0 +1,16 @@
+{
+  pages(first: 3) {
+    id,
+    title,
+    content
+  },
+  term(id: 4) {
+    name,
+    count,
+    objects {
+      type,
+      title,
+      content
+    }
+  }
+}

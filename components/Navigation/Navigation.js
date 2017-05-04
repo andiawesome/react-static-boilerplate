@@ -8,10 +8,20 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Link from '../Link';
 
 class Navigation extends React.Component {
+  static propTypes = {
+    navItems: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })),
+  };
+
+  static defaultProps = {
+    navItems: [],
+  }
 
   componentDidMount() {
     window.componentHandler.upgradeElement(this.root);
@@ -22,10 +32,12 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const { navItems } = this.props;
     return (
       <nav className="mdl-navigation" ref={node => (this.root = node)}>
-        <Link className="mdl-navigation__link" to="/">Home</Link>
-        <Link className="mdl-navigation__link" to="/about">About</Link>
+        {navItems.map(item =>
+          <Link className="mdl-navigation__link" to={item.url}>{item.title}</Link>,
+        )}
       </nav>
     );
   }

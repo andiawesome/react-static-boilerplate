@@ -10,7 +10,7 @@
 
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
-import Header from './Header';
+import Header from '../Header';
 import Footer from '../Footer';
 import s from './Layout.css';
 
@@ -18,6 +18,10 @@ class Layout extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,
+  };
+
+  static defaultProps = {
+    menuItems: [],
   };
 
   componentDidMount() {

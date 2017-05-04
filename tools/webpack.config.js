@@ -14,6 +14,7 @@ const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('../package.json');
+const themeConfig = require('./config');
 
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
@@ -43,7 +44,7 @@ const config = {
   // Options affecting the output of the compilation
   output: {
     path: path.resolve(__dirname, '../public/dist'),
-    publicPath: isDebug ? `http://localhost:${process.env.PORT || 3000}/dist/` : '/dist/',
+    publicPath: isDebug ? `http://localhost:${process.env.PORT || 3000}/dist/` : `${themeConfig.url}/wp-content/themes/${themeConfig.project}/dist/`,
     filename: isDebug ? '[name].js?[hash]' : '[name].[hash].js',
     chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
     sourcePrefix: '  ',
@@ -148,6 +149,10 @@ const config = {
       {
         test: /\.md$/,
         loader: path.resolve(__dirname, './markdown-loader.js'),
+      },
+      {
+        test: /\.txt$/,
+        use: 'raw-loader',
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
