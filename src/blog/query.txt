@@ -9,7 +9,8 @@
       type
     }
   },
-  menu_location(slug: "header-menu") {
+  menu_location(slug: "header") {
+    slug,
     active_menu {
       id,
       name,

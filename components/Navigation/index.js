@@ -1,16 +1,27 @@
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
   const {
     menus: menusState,
   } = state;
 
-  console.log({ menusState });
-  if (!menusState.headerMenu) return {};
-  const navItems = Object.keys(menusState.headerMenu).map(key => menusState.menuItems[key]);
+  const {
+    menuLocations,
+    menus,
+    menuItems,
+  } = menusState;
 
-  console.log({ navItems });
+  const { location } = ownProps;
+
+  console.log({ menusState });
+  if(!menuLocations.header || !menus[menuLocations.header.active_menu]) return {};
+
+  const itemIds = menus[menuLocations.header.active_menu].items;
+
+  const navItems = Object.keys(itemIds).map((key) => {
+    return menuItems[itemIds[key]];
+  });
 
   return {
     navItems,

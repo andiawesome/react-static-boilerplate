@@ -30,7 +30,7 @@ class Header extends React.Component {
             React Static Boilerplate
           </Link>
           <div className="mdl-layout-spacer" />
-          <Navigation />
+          <Navigation location="header" />
         </div>
       </header>
     );

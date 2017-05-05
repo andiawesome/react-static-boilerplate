@@ -3,11 +3,11 @@ import BlogRoll from './BlogRoll';
 
 const mapState = (state) => {
   const {
-    posts: postsState
+    posts: postsState,
   } = state;
 
   return {
-    posts: postsState.posts
+    posts: postsState.posts,
   };
 };
 

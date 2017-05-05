@@ -12,7 +12,7 @@
   </head>
   <body>
     <div id="container"></div>
-    <script src="http://dev.andiawesome.com/wp-content/themes/reactwpboilerplate/dist/main.3340ecf71af31e28798d.js"></script>
+    <script src="http://dev.andiawesome.com/wp-content/themes/reactwpboilerplate/dist/main.59b0c50640078d70e94c.js"></script>
     <script>
       window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
       ga('create','UA-XXXXX-Y','auto');ga('send','pageview')

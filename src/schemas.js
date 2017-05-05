@@ -1,9 +1,13 @@
 import { schema } from 'normalizr';
 
-const menuItem = new schema.Entity('menuItem');
+const menuItem = new schema.Entity('menuItems');
 
-const menu = new schema.Entity('menu', {
+const menu = new schema.Entity('menus', {
   items: [menuItem],
 }, { idAttribute: 'name' });
 
-export { menuItem, menu };
+const menuLocation = new schema.Entity('menuLocations', {
+  active_menu: menu,
+}, { idAttribute: 'slug' });
+
+export { menuItem, menu, menuLocation };
