@@ -21,9 +21,12 @@ creators.fetchGraphQLData = query => (
   }
 );
 
-creators.updateData = data => ({
-  type: types.UPDATE_SITE_DATA,
-  ...data,
-});
+creators.updateData = (data) => {
+  console.log({ updateData: data });
+  return {
+    type: types.UPDATE_SITE_DATA,
+    ...data,
+  };
+};
 
 export { creators, types };

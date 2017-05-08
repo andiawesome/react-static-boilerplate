@@ -1,0 +1,16 @@
+posts(author: 1) {
+  id,
+  title,
+  content,
+  excerpt,
+  author {
+    name,
+    id
+  },
+  comments {
+    date,
+    author {
+      name
+    }
+  }
+}

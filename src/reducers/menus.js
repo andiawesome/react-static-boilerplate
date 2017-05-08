@@ -17,8 +17,6 @@ export default function menus(state = {
       if (!action.menu_location) return state;
       normalized = normalize(action.menu_location, menuLocation);
 
-      console.log({ normalized });
-
       return Object.assign({}, state, {
         isFetching: false,
         menuLocations: Object.assign({}, state.menuLocations, {

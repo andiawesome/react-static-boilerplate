@@ -9,6 +9,20 @@
  */
 
 import React from 'react';
+import store from './store';
+import { creators } from './actions';
+import category from '../data/queries/category.txt';
+import menuLocation from '../data/queries/menu_location.txt';
+import page from '../data/queries/page.txt';
+import posts from '../data/queries/posts.txt';
+import getData from './data';
+
+const queries = {
+  category,
+  menuLocation,
+  page,
+  posts,
+};
 
 function decodeParam(val) {
   if (!(typeof val === 'string' || val.length === 0)) {
@@ -46,6 +60,13 @@ function matchURI(route, path) {
   return params;
 }
 
+function matchParams(query, params) {
+  const pattern = /[a-z]+(\(.*\))\w*/;
+  console.log({ query });
+  const newQuery = query.replace(pattern, '(id: 7)');
+  console.log({ newQuery, params });
+}
+
 // Find the route matching the specified location (context), fetch the required data,
 // instantiate and return a React component
 function resolve(routes, context) {
@@ -54,6 +75,24 @@ function resolve(routes, context) {
 
     if (!params) {
       continue; // eslint-disable-line no-continue
+    }
+
+    if (route.graphql) {
+      const keys = Object.keys(route.graphql);
+
+      return Promise.all([
+        route.load(),
+        (() => {
+          const query = keys.map(key => queries[key]).join(',');
+          const all = matchParams(query, params);
+          console.log({ all });
+
+          return getData(`{${query}}`);
+        })(),
+      ]).then(([Page, data]) => {
+        store.dispatch(creators.updateData(data.data));
+        return <Page route={{ ...route, params }} error={context.error} />;
+      });
     }
 
     // Check if the route has any data requirements, for example:
@@ -66,12 +105,13 @@ function resolve(routes, context) {
         ...keys.map((key) => {
           const query = route.data[key];
           const method = query.substring(0, query.indexOf(' ')); // GET
+          const contentType = 'application/json';
           let url = query.substr(query.indexOf(' ') + 1);      // /api/tasks/$id
           // TODO: Optimize
           Object.keys(params).forEach((k) => {
             url = url.replace(`${k}`, params[k]);
           });
-          return fetch(url, { method }).then(resp => resp.json());
+          return fetch(url, { method, contentType }).then(resp => resp.json());
         }),
       ]).then(([Page, ...data]) => {
         const props = keys.reduce((result, key, i) => ({ ...result, [key]: data[i] }), {});

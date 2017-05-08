@@ -1,0 +1,24 @@
+page(id: 5) {
+  title,
+  content,
+  author{
+    name,
+    nickname,
+    id
+  },
+  date,
+  excerpt,
+  post_status,
+  slug,
+  type,
+  comments {
+    id,
+    author {
+      name,
+      nickname,
+      id
+    },
+    date,
+    content
+  }
+}

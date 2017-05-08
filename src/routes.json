@@ -21,8 +21,15 @@
     "page": "./onepage"
   },
   {
-    "path": "/blog",
-    "page": "./blog"
+    "path": "/category/:id",
+    "page": "./blog",
+    "data": {
+      "articles": "GET https://gist.githubusercontent.com/koistya/a32919e847531320675764e7308b796a/raw/articles.json"
+    },
+    "graphql": {
+      "category": "4",
+      "menuLocation": "header"
+    }
   },
   {
     "path": "/tasks/:status(pending|completed)?",

@@ -1,0 +1,9 @@
+term(id: 4) {
+  name,
+  count,
+  objects {
+    type,
+    title,
+    content
+  }
+}

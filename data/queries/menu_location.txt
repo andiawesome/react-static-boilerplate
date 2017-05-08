@@ -1,0 +1,12 @@
+menu_location(slug: "header") {
+  slug,
+  active_menu {
+    id,
+    name,
+    items {
+      id,
+      title,
+      url
+    }
+  }
+}

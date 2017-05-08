@@ -57,6 +57,9 @@ module.exports = function routesLoader(source) {
     output.push(`    pattern: ${pattern.toString()},\n`);
     output.push(`    keys: ${JSON.stringify(keys)},\n`);
     output.push(`    page: '${escape(route.page)}',\n`);
+    if (route.graphql) {
+      output.push(`   graphql: ${JSON.stringify(route.graphql)},\n`);
+    }
     if (route.data) {
       output.push(`    data: ${JSON.stringify(route.data)},\n`);
     }
